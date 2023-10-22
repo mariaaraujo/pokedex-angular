@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{ updateMode ? 'Editar' : 'Adicionar' }} Pokémon</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Nome" formControlName="name">
+      <mat-error *ngIf="form.get('name')?.hasError('required')">Nome é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Descrição" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="type" multiple>
+        <mat-option *ngFor="let type of objKeyPokemonType" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancelar</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">{{ updateMode ? 'Editar' : 'Adicionar' }}</button>
+</div>
