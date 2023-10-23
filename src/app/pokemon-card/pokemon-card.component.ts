@@ -20,7 +20,7 @@ export class PokemonCardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+
     });
   }
 
@@ -28,9 +28,7 @@ export class PokemonCardComponent {
   confirmDeletePokemon(pokemonId: string) {
     if (confirm('Deseja realmente deletar este Pokémon? Esta ação é irreversível.')) {
       this.http.delete(`https://localhost:7026/api/pokemon/${pokemonId}?_id=${pokemonId}`)
-      .subscribe(status => {
-        if(status == 204) {}
-      }, error => {
+      .subscribe(error => {
         console.error(error);
       });
     }

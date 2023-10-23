@@ -2,10 +2,9 @@
   <mat-card-content>
     <h3>{{ pokemon.name }}</h3>
     <p>Descrição: {{ pokemon.description }}</p>
-    <p>Tipo:</p>
-    <div class="pokemon-types">
-      <span *ngFor="let type of pokemon.type" class="type">{{ type }}</span>
-    </div>
+    <p>Tipo:
+      <span *ngFor="let type of pokemon.type" class="type"> {{ type }} </span>
+     </p>
     <div style="padding-top: 1rem; display: flex; gap: 0.5rem;">
       <button mat-raised-button (click)="openEditPokemonDialog(pokemon._id)" style="background-color: #1E90FF; color:white;">Editar</button>
       <button mat-raised-button (click)="confirmDeletePokemon(pokemon._id)" style="background-color: #B22222; color:white;">Deletar</button>

@@ -7,12 +7,14 @@
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Descrição" formControlName="description">
+      <mat-error *ngIf="form.get('description')?.hasError('required')">Descrição é obrigatório</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Tipo</mat-label>
       <mat-select formControlName="type" multiple>
         <mat-option *ngFor="let type of objKeyPokemonType" [value]="type">{{ type }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="form.get('type')?.hasError('required')">Tipo é obrigatório</mat-error>
     </mat-form-field>
     <div mat-dialog-actions>
       <button mat-button (click)="onCancelClick()">Cancelar</button>

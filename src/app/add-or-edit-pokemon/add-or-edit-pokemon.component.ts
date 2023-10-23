@@ -1,6 +1,6 @@
   import { Component, OnInit, Inject } from '@angular/core';
   import { FormGroup, FormControl, Validators } from '@angular/forms';
-  import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+  import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
   import axios from 'axios';
   import { PokemonType } from '../enums';
@@ -19,7 +19,6 @@
   export class AddOrEditPokemonComponent implements OnInit {
     openModal: boolean = false;
     pokemonId: string = '';
-    refresh: () => Promise<void> = async () => {};
 
     form: FormGroup = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -40,9 +39,6 @@
       this.updateMode = !!this.pokemonId
       if (this.updateMode) {
         this.getPokemonById(this.pokemonId);
-      }
-      else{
-        console.log(this.pokemonId)
       }
     }
 
@@ -79,7 +75,6 @@
           type: values.type.length > 0 ? values.type : ['NORMAL']
         });
         if (response.status === 201) {
-          this.refresh();
           this.dialogRef.close();
         }
       } catch (error) {
@@ -95,7 +90,6 @@
           type: values.type.length > 0 ? values.type : ['NORMAL']
         });
         if (response.status === 204) {
-          this.refresh();
           this.dialogRef.close();
         }
       } catch (error) {

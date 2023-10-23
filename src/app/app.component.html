@@ -1,11 +1,12 @@
-<app-navbar (refresh)="getPokemons()"></app-navbar>
+<app-navbar />
 
-  <div class="grid-container" style="background-color: light  gray; padding: 10px;">
+  <button mat-raised-button (click)="getPokemons()" style="margin: 2rem 0 0 2rem">Atualizar</button>
+  <div style="display: flex; flex-wrap: wrap; align-items: center; padding: 2rem;">
     <ng-container *ngIf="pokemonsData.length === 0; else pokemonGrid">
     </ng-container>
     <ng-template #pokemonGrid>
-      <div class="grid-item" style="background-color: lightblue; padding: 5px;" *ngFor="let pokemon of pokemonsData; let i = index">
-        <app-pokemon-card [pokemon]="pokemon" (refresh)="getPokemons()"></app-pokemon-card>
-      </div>
-    </ng-template>
+        <div style="width: 30%; padding: 5px; margin: 5px; background-color: lightblue;" *ngFor="let pokemon of pokemonsData">
+          <app-pokemon-card [pokemon]="pokemon" />
+        </div>
+    </ng-template>  
   </div>
